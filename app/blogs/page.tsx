@@ -5,12 +5,16 @@ import { client } from "@/sanity/lib/client";
 import BlogCard from "@/app/component/blogCard";
 import Button from "../component/button";
 import Loader from "../component/loader";
+import { Type } from "./[slug]/page";
+import Image from "next/image"
+import Link from "next/link";
+
 
 const query = '*[_type == "post"]{title,description,slug,"author":author->name,"categories": categories[]->title,publishedAt,mainImage{asset->{url}, alt},body}';
 
 export default function Blog() {
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Type[]>([]);
 
   useEffect(() => {
     const dataFetching = async () => {
@@ -47,16 +51,16 @@ export default function Blog() {
         <div className="flex gap-4">
         <div className="grid grid-cols-1  gap-8">
           {data.length > 0 ? (
-            data.map((post: any) => (
+            data.map((post) => (
               <BlogCard
                 key={post.slug.current}
                 title={post.title}
                 author={post.author}
                 categories={post.categories}
-                image={post.mainImage?.asset?.url || ""}
+                image={post.mainImage?.asset?.url|| ""}
                 imageAlt={post.mainImage?.alt || "Blog Image"}
                 description={post.description}
-                slug={post.slug.current}
+                slug={post.slug.current } 
                 publishedAt={post.publishedAt}
               />
             ))
@@ -71,9 +75,11 @@ export default function Blog() {
             <h3 className="text-lg font-bold text-gray-800 mb-4">Staff Picks</h3>
             <ul className="space-y-7">
               <li className="flex items-center">
-                <img
+                <Image
                   src="https://i.pinimg.com/236x/d4/d7/e6/d4d7e692779a9be82160e31e5c0c949e.jpg"
                   alt="Medium Logo"
+                  width={40}
+                  height={40}
                   className="w-10 h-10 rounded-full mr-3"
                 />
                 <div className="flex flex-col gap-2">
@@ -85,9 +91,11 @@ export default function Blog() {
                 </div>
               </li>
               <li className="flex items-center">
-                <img
+                <Image
                   src="https://i.pinimg.com/474x/44/e5/63/44e5633da0d5081ae0d21fe5d66dbf95.jpg"
                   alt="Medium Logo"
+                  width={40}
+                  height={40}
                   className="w-10 h-10 rounded-full mr-3"
                 />
                 <div className="flex flex-col gap-2">
@@ -99,9 +107,11 @@ export default function Blog() {
                 </div>
               </li>
               <li className="flex items-center">
-                <img
+                <Image
                   src="https://i.pinimg.com/236x/83/a5/d4/83a5d4d329ace4b153356a1f59ad38ad.jpg"
                   alt="Medium Logo"
+                  width={40}
+                  height={40}
                   className="w-10 h-10 rounded-full mr-3"
                 />
                 <div className="flex flex-col gap-2">
@@ -114,12 +124,12 @@ export default function Blog() {
               </li>
             </ul>
             <div className="mt-4">
-              <a
+              <Link
                 href="#"
                 className="text-blue-500 text-sm font-medium hover:underline"
               >
                 See the full list
-              </a>
+              </Link>
             </div>
             </div>
             <div className=" p-4">

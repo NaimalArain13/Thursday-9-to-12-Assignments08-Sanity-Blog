@@ -51,7 +51,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4">Join Blogist.co Today</h2>
           <p className="text-lg font-light max-w-3xl mx-auto mb-6">
-            Whether you're a reader, writer, or both, Blogist.co is your gateway to an inspiring world of content.
+            Whether you&#39;re a reader, writer, or both, Blogist.co is your gateway to an inspiring world of content.
           </p>
           <Link
             href="/blogs"

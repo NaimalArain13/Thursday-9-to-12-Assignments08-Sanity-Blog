@@ -22,7 +22,7 @@ const PunchCard = () => {
           />
         </svg>
         <p className="text-xs font-semibold">
-          "Discover inspiring stories from diverse voices."
+        &quot;Discover inspiring stories from diverse voices.&quot;
         </p>
       </div>
       <div
@@ -44,7 +44,7 @@ const PunchCard = () => {
           />
         </svg>
         <p className="text-xs font-semibold">
-          "Stay informed with the latest trends and ideas."
+          &quot;Stay informed with the latest trends and ideas.&quot;
         </p>
       </div>
       <div
@@ -66,7 +66,7 @@ const PunchCard = () => {
           />
         </svg>
         <p className="text-xs font-semibold">
-          "Share your expertise and inspire the community."
+          &quot;Share your expertise and inspire the community.&quot;
         </p>
       </div>
       <div
@@ -88,7 +88,7 @@ const PunchCard = () => {
           />
         </svg>
         <p className="text-xs font-semibold">
-          "Join the conversation and make your voice heard."
+          &quot;Join the conversation and make your voice heard.&quot;
         </p>
       </div>
     </div>

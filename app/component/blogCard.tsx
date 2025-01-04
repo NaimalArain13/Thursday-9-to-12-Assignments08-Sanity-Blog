@@ -4,14 +4,15 @@
 import Link from "next/link";
 import Image from "next/image";
 
-interface BlogCardProps {
+export interface BlogCardProps {
+  [x: string]: unknown;
   title: string;
   author: string;
   categories: string[];
   image: string;
   imageAlt: string;
   description: string;
-  slug: string;
+  slug:string;
   publishedAt: string;
 }
 

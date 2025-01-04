@@ -7,11 +7,47 @@ import Link from "next/link";
 import CTA from "@/app/component/CTA";
 import Loader from "@/app/component/loader";
 
+export interface Type {
+
+  title: string;
+  description: string;
+  slug: {
+    _type: string;
+    current: string;
+  };
+  author: string;
+  categories: string[];
+  publishedAt: string;
+  mainImage: {
+    asset: {
+      url: string;
+    };
+    alt?: string; // Optional since not all mainImage objects may have an alt
+  };
+  body: Array<{
+    _key: string;
+    _type: string;
+    style?: string; // Optional as not all blocks may have a style
+    markDefs?: Array<{
+      _key: string;
+      _type: string;
+      href?: string; // Optional since links may not always have hrefs
+    }>;
+    children: Array<{
+      _key: string;
+      _type: string;
+      text: string;
+      marks?: string[]; // Optional, might be empty or missing
+    }>;
+    listItem?: string; // Optional to handle list items (e.g., "bullet")
+    level?: number; // Optional for list hierarchy
+  }>;
+}
 const query =
   '*[_type == "post"]{title,description,slug,"author":author->name,"categories": categories[]->title,publishedAt,mainImage{asset->{url }, alt},body[]{..., _type == "image"=>{"assetUrl": asset->url}}}';
 
 export default function BlogSlug({ params }: { params: { slug: string } }) {
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Type[]>([]);
   const [loading, setLoading] = useState(true); // Set default to true
 
   useEffect(() => {
@@ -28,7 +64,7 @@ export default function BlogSlug({ params }: { params: { slug: string } }) {
     dataFetching();
   }, []);
 
-  const blogSlug = data.find((blog: any) => blog.slug.current === params.slug);
+  const blogSlug = data.find((blog:Type ) => blog.slug.current === params.slug);
 
   if (loading || !blogSlug) {
     return (
